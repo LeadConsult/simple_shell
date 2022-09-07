@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * * cd_b - Changes --> current working directory to  parameter passed to cd.
+ * * cd_passed - Changes current working directory to parameter passed to cd
  * * if no parameter is passed, it will change directory to HOME.
  * * @line: A string representing --> input from --> user.
  */
-void cd_b(char *line)
+void cd_passed(char *line)
 {
 	int i;
 	int token_count_;
@@ -13,7 +13,7 @@ void cd_b(char *line)
 	const char *delim = "\n\t ";
 
 	token_count_ = 0;
-	param_arr = token_interface(line, delim, token_count_);
+	param_arr = token_interacts(line, delim, token_count_);
 	if (param_arr[0] == NULL)
 	{
 		single_free(2, param_arr, line);
@@ -25,18 +25,18 @@ void cd_b(char *line)
 		chdir((environ[i]) + 5);
 	}
 	else if (_strcmp(param_arr[1], "-") == 0)
-		print_str(param_arr[1], 0);
+		_print_str(param_arr[1], 0);
 
 	else
 		chdir(param_arr[1]);
-	double_free(param_arr);
+	free_double(param_arr);
 }
 
 /**
- * * env_b - Prints all --> environmental variables in --> current shell.
+ * * env_var - Prints all --> environmental variables in --> current shell.
  * * @line: A string representing --> input from --> user.
  */
-void env_b(__attribute__((unused))char *line)
+void env_var(__attribute__((unused))char *line)
 {
 	int i;
 	int j;
@@ -56,7 +56,7 @@ void env_b(__attribute__((unused))char *line)
 void exit_b(char *line)
 {
 	free(line);
-	print_str("\n", 1);
+	_print_str("\n", 1);
 	exit(1);
 }
 
@@ -71,8 +71,8 @@ void (*check_built_ins(char *str))(char *str)
 
 	builtin_t buildin[] = {
 		{"exit", exit_b},
-		{"env", env_b},
-		{"cd", cd_b},
+		{"env", env_var},
+		{"cd", cd_passed},
 		{NULL, NULL}
 	};
 
@@ -87,12 +87,12 @@ void (*check_built_ins(char *str))(char *str)
 }
 
 /**
- * * built_in - Checks for built-in functions.
+ * * built_in_fn - Checks for built-in functions.
  * * @command: An array of all --> arguments passed to --> shell.
  * * @line: A string representing --> input from --> user.
  * * Return: If function is found 0. Otherwise -1.
  */
-int built_in(char **command, char *line)
+int built_in_fn(char **command, char *line)
 {
 	void (*build)(char *);
 
@@ -100,7 +100,7 @@ int built_in(char **command, char *line)
 	if (build == NULL)
 		return (-1);
 	if (_strcmp("exit", command[0]) == 0)
-		double_free(command);
+		free_double(command);
 	build(line);
 	return (0);
 }
