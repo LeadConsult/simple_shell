@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <unistd.h>
+
+/**
+ * * main - PID..
+ * *
+ * * Return: Always 0.
+ */
+int main(void)
+{
+	pid_t p_pid;
+
+	p_pid = getpid();
+	printf("hid %u\n", p_pid);
+	p_pid = getppid();
+	printf("pid %u\n", p_pid);
+	return (0);
+}
+
