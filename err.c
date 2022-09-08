@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * * error_print - prints error messages to standard error
+ * error_print - prints error messages to standard error
  * * @vars: pointer   to struct of variables
  * * @msg: message  to print
  * *
