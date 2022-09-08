@@ -5,7 +5,7 @@
  * * @ptr: pointer to  old array
  * * @size: pointer to no of elements in  old array
  * *
- * * Return: pointer to  new array
+ * Return: pointer to  new array
  */
 char **realloc_p(char **ptr, size_t *size)
 {
