@@ -3,10 +3,10 @@
 unsigned int sig_flag;
 
 /**
- * * sig__ - handles ^C signal interupt
- * * @uuv: unused variable (required for signal function prototype)
- * *
- * * Return: void
+ * sig__ - handles ^C signal interupt
+ * @uuv: unused variable (required for signal function prototype)
+ *
+ * Return: void
  */
 static void sig__(int uuv)
 {
